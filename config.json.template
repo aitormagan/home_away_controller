@@ -1,0 +1,33 @@
+{
+  "away_controller": {
+    "class": "MovistarHGUMitraStarController",
+    "config": {
+      "host": "192.168.1.1",
+      "user": "1234",
+      "password": "<HGU_PASS>"
+    },
+    "devices_to_control": ["<MAC_1>", "<MAC_2>", "..."]
+  },
+  "devices_managers": [
+    {
+      "class": "HomeBridgeDeviceManager",
+      "config": {
+        "host": "<HOMEBRIDGE_HOST>",
+        "user": "<HOMEBRIDGE_USER>",
+        "password": "<HOMEBRIDGE_PASS>",
+        "devices": [
+          {
+            "id": "<DEVICE_1_ID>",
+            "type": "On",
+            "away_value": 1,
+            "home_value": 0
+          }, {
+            "id": "<DEVICE_2_ID>",
+            "type": "TargetHeatingCoolingState",
+            "away_value": 0,
+            "home_value": 1
+          }]
+      }
+    }
+  ]
+}
