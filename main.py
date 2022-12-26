@@ -2,7 +2,7 @@ from utils import status_file, configuration, dynamic_importer
 import logging
 
 
-logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 
 AWAY = "AWAY"
