@@ -24,12 +24,10 @@ def main():
         devices_managers = get_devices_managers(config["devices_managers"])
         if current_status == AWAY:
             logging.info("Detect away from home")
-            status_file.write_status(AWAY)
             for manager in devices_managers:
                 manager.execute_home_away()
         else:
             logging.info("Detected at home")
-            status_file.write_status(AT_HOME)
             for manager in devices_managers:
                 manager.execute_at_home()
 
