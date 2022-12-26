@@ -36,7 +36,7 @@ Active   MAC Addr           IP Addr          ETH port  VLAN ID
             if "[" in line:
                 parsed_line = ' '.join(line.split()).split()
                 if "v" in parsed_line[0]:
-                    macs.add(parsed_line[1])
+                    macs.add(parsed_line[1].lower())
 
         return macs
 
