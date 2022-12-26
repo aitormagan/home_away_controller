@@ -5,8 +5,8 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG)
 
 
-CONNECTED = "CONNECTED"
-DISCONNECTED = "DISCONNECTED"
+AWAY = "AWAY"
+AT_HOME = "AT_HOME"
 
 
 def main():
@@ -16,24 +16,22 @@ def main():
     connected_devices = controller.get_connected_devices()
     devices_to_control = away_controller_config["devices_to_control"]
 
-    current_status = {x: "CONNECTED" for x in connected_devices if x.lower() in devices_to_control}
-    current_status.update({x: "DISCONNECTED" for x in devices_to_control if x not in current_status})
+    devices_connected = map(lambda x: True if x.lower() in connected_devices else False, devices_to_control)
+    current_status = AT_HOME if any(devices_connected) else AWAY
     previous_status = status_file.get_devices_previous_status()
 
-    changes_detected = any(x for x in current_status if current_status[x] != previous_status.get(x, None))
-
-    if changes_detected:
-        status_summary = list(current_status.values())
-        if len(status_summary) == 1:
-            devices_managers = get_devices_managers(config["devices_managers"])
-            if status_summary[0] == CONNECTED:
-                logging.info("Detected at home")
-                for manager in devices_managers:
-                    manager.execute_at_home()
-            else:
-                logging.info("Detect away from home")
-                for manager in devices_managers:
-                    manager.execute_home_away()
+    if current_status != previous_status:
+        devices_managers = get_devices_managers(config["devices_managers"])
+        if current_status == AWAY:
+            logging.info("Detect away from home")
+            status_file.write_status(AWAY)
+            for manager in devices_managers:
+                manager.execute_home_away()
+        else:
+            logging.info("Detected at home")
+            status_file.write_status(AT_HOME)
+            for manager in devices_managers:
+                manager.execute_at_home()
 
         status_file.write_status(current_status)
     else:
