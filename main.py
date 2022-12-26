@@ -1,5 +1,5 @@
-from utils import status_file, configuration, dynamic_importer
 import logging
+from utils import status_file, configuration, dynamic_importer
 
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -16,7 +16,7 @@ def main():
     connected_devices = controller.get_connected_devices()
     devices_to_control = away_controller_config["devices_to_control"]
 
-    devices_connected = map(lambda x: True if x.lower() in connected_devices else False, devices_to_control)
+    devices_connected = map(lambda x: x.lower() in connected_devices, devices_to_control)
     current_status = AT_HOME if any(devices_connected) else AWAY
     previous_status = status_file.get_devices_previous_status()
 
