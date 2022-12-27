@@ -5,6 +5,19 @@ from .base import DeviceManager
 class HomeBridgeDeviceManager(DeviceManager):
 
     def __init__(self, host, user, password, devices, port=8581):
+        """
+        HomeBridge Constructor.
+        :param host: HomeBridge IP.
+        :param user: The username used to connect with HomeBridge (generally `admin`).
+        :param password: The password used to connect with HomeBridge.
+        :param devices: A list with all the devices whose state should be modified when arriving/leaving home. For each
+        one:
+        * id: The unique HomeBridge ID attached to the device.
+        * type: The type of the device (`On`, `TargetHeatingCoolingState`, etc.)
+        * away_value: The value to be set to the device when leaving home.
+        * home_value: The value to be set to the device when arriving home.
+        :param port: The HomeBridge port (generally `8581`)
+        """
         self._host = host
         self._user = user
         self._password = password
