@@ -13,12 +13,14 @@ class HomeBridgeDeviceManager(DeviceManager):
         self._token = None
 
     def execute_home_away(self):
-        for device in self._devices:
-            self._set_accessory_status(device["type"], device["id"], device["away_value"])
+        self._execute_generic("away_value")
 
     def execute_at_home(self):
+        self._execute_generic("home_value")
+
+    def _execute_generic(self, value_key):
         for device in self._devices:
-            self._set_accessory_status(device["type"], device["id"], device["home_value"])
+            self._set_accessory_status(device["type"], device["id"], device[value_key])
 
     def _set_auth_token(self):
         auth_req = requests.post(f"http://{self._host}:{self._port}/api/auth/login",
