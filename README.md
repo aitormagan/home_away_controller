@@ -19,7 +19,7 @@ marca MitraStar y comercializado por Movistar, y detecta si estás en casa o no,
 MAC de tu dispositivo está activa o no.
 
 ## Devices Managers
-Para interactuar con la domótica de tu casa cuando entras o sale, existe un módulo denominado `devices_managers` que
+Para interactuar con la domótica de tu casa cuando entras o sales, existe un módulo denominado `devices_managers` que
 permite interactuar con los dispositivos, para activarlos o desactivarlos, en función de tus necesidades. La idea en 
 este caso es ir extendiendo este módulo a través de contribuciones de la comunidad.
 
