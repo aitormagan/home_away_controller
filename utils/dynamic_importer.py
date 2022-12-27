@@ -9,4 +9,4 @@ def import_class(module_name, cls):
         if cls in dir(submodule):
             return getattr(submodule, cls)
 
-    raise StopIteration()
+    raise ModuleNotFoundError()
