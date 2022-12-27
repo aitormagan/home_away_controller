@@ -1,10 +1,11 @@
+from typing import List
 import pexpect
 from .base import Controller
 
 
 class MovistarHGUMitraStarController(Controller):
 
-    def __init__(self, host, user, password):
+    def __init__(self, host: str, user: str, password: str):
         """
         Constructor.
         :param host: The router IP.
@@ -46,6 +47,6 @@ Active   MAC Addr           IP Addr          ETH port  VLAN ID
 
         return macs
 
-    def get_connected_devices(self, hosts):
+    def get_connected_devices(self, hosts: List[str]) -> List[str]:
         lanhost_output = self._get_lan_hosts()
         return [x for x in self._get_connected_macs(lanhost_output) if x in hosts]

@@ -15,6 +15,6 @@ class DeviceManager(ABC):
     def execute_at_home(self):
         """
         The method to be executed when there is at least one person at home.
-        :return:
+        :return: None
         """
         pass
