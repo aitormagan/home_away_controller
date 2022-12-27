@@ -17,6 +17,8 @@ Actualmente, los controllers que existen son:
 1. Movistar MitraStar HGU (`MovistarHGUMitraStarController`): este controller se conecta por SSH a tu router HGU de la
 marca MitraStar y comercializado por Movistar, y detecta si estás en casa o no, viendo el estado LAN y comprobando si la
 MAC de tu dispositivo está activa o no.
+2. Ping (`PingController`): este controller lanza un ping a los dispositivos a controlar y marca en casa aquellos que 
+respondan al ping. 
 
 ## Devices Managers
 Para interactuar con la domótica de tu casa cuando entras o sales, existe un módulo denominado `devices_managers` que
@@ -52,6 +54,10 @@ Tienes un ejemplo de configuración en el archivo `config.json.template`:
 * `host`: La dirección IP del router.
 * `user`: El usuario con el que conectarte al router (generalmente `1234`).
 * `password`: La password de acceso al router (pegatina debajo del router).
+
+### `PingController`
+
+> Sin configuración específica
 
 ### `HomeBridgeDeviceManager`
 

@@ -40,6 +40,6 @@ Active   MAC Addr           IP Addr          ETH port  VLAN ID
 
         return macs
 
-    def get_connected_devices(self):
+    def get_connected_devices(self, hosts):
         lanhost_output = self._get_lan_hosts()
-        return self._get_connected_macs(lanhost_output)
+        return [x for x in self._get_connected_macs(lanhost_output) if x in hosts]

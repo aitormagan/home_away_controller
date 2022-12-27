@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 .idea/
-config.json
+config*json
 status_file.txt

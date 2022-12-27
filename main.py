@@ -13,8 +13,8 @@ def main():
     config = configuration.get_config()
     away_controller_config = config["away_controller"]
     controller = get_away_controller(away_controller_config)
-    connected_devices = controller.get_connected_devices()
     devices_to_control = away_controller_config["devices_to_control"]
+    connected_devices = controller.get_connected_devices(devices_to_control)
 
     devices_connected = map(lambda x: x.lower() in connected_devices, devices_to_control)
     current_status = AT_HOME if any(devices_connected) else AWAY
