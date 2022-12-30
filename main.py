@@ -40,14 +40,18 @@ def get_devices_managers(device_managers_config):
     devices_managers = []
     for item in device_managers_config:
         manager_cls = dynamic_importer.import_class("devices_managers", item["class"])
-        devices_managers.append(manager_cls(**item["config"]))
+        config = dict(item["config"])
+        config["logger"] = logging
+        devices_managers.append(manager_cls(**config))
 
     return devices_managers
 
 
 def get_away_controller(away_controller_config):
     controller_cls = dynamic_importer.import_class("away_controllers", away_controller_config["class"])
-    return controller_cls(**away_controller_config["config"])
+    config = dict(away_controller_config["config"])
+    config["logger"] = logging
+    return controller_cls(**config)
 
 
 if __name__ == '__main__':

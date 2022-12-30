@@ -5,13 +5,15 @@ from .base import Controller
 
 class MovistarHGUMitraStarController(Controller):
 
-    def __init__(self, host: str, user: str, password: str):
+    def __init__(self, host: str, user: str, password: str, logger):
         """
         Constructor.
         :param host: The router IP.
         :param user: The username used to connect with the router (generally `1234`).
         :param password: The password used to connect with the router.
+        :param logger: Logger
         """
+        super().__init__(logger)
         self.__host = host
         self.__user = user
         self.__password = password

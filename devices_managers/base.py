@@ -3,6 +3,21 @@ from abc import ABC, abstractmethod
 
 class DeviceManager(ABC):
 
+    def __init__(self, logger):
+        """
+        Constructor
+        :param logger: Logger
+        """
+        self._logger = logger
+
+    @property
+    def logger(self):
+        """
+        Returns the logger to be used in case you want your manager to log info
+        :return: the logger to be used in case you want your manager to log info
+        """
+        return self._logger
+
     @abstractmethod
     def execute_home_away(self):
         """
