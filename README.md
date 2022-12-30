@@ -67,8 +67,10 @@ Tienes un ejemplo de configuración en el archivo `config.json.template`:
 * `devices`: La lista de dispositivos con los que debe interactuar HomeBridge:
   * `id`: El ID único de dispositivo (lo puedes obtener llamando a la API `http://<HOMEBRIDGE_HOST>:8581/api/accessories`)
   * `type`: Tipo de dispositivo (`On`, `argetHeatingCoolingState`)
-  * `home_value`: El valor a establecer al dispositivo cuando llegas a casa.
-  * `away_value`: El valor a establecer al dispositivo cuando sales de casa.
+  * `home_value`: El valor a establecer al dispositivo cuando llegas a casa. `null` para no ejecutar acción al llegar 
+    a casa.
+  * `away_value`: El valor a establecer al dispositivo cuando sales de casa. `null` para no ejecutar acción al salir de 
+    casa.
 
 ## Ejecución
 

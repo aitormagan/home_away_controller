@@ -14,8 +14,8 @@ class HomeBridgeDeviceManager(DeviceManager):
         one:
         * id: The unique HomeBridge ID attached to the device.
         * type: The type of the device (`On`, `TargetHeatingCoolingState`, etc.)
-        * away_value: The value to be set to the device when leaving home.
-        * home_value: The value to be set to the device when arriving home.
+        * away_value: The value to be set to the device when leaving home. None for no action.
+        * home_value: The value to be set to the device when arriving home. None for no action.
         :param port: The HomeBridge port (generally `8581`)
         :param logger: Logger
         """
@@ -35,7 +35,8 @@ class HomeBridgeDeviceManager(DeviceManager):
 
     def _execute_generic(self, value_key):
         for device in self._devices:
-            self._set_accessory_status(device["type"], device["id"], device[value_key])
+            if device[value_key]:
+                self._set_accessory_status(device["type"], device["id"], device[value_key])
 
     def _set_auth_token(self):
         auth_req = requests.post(f"http://{self._host}:{self._port}/api/auth/login",
