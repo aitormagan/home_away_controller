@@ -33,7 +33,7 @@ def main():
 
         status_file.write_status(current_status)
     else:
-        logging.info("No changes detected so no actions taken")
+        logging.debug("No changes detected so no actions taken")
 
 
 def get_devices_managers(device_managers_config):
