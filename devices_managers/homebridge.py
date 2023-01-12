@@ -35,7 +35,7 @@ class HomeBridgeDeviceManager(DeviceManager):
 
     def _execute_generic(self, value_key):
         for device in self._devices:
-            if device[value_key]:
+            if device[value_key] is not None:
                 self._set_accessory_status(device["type"], device["id"], device[value_key])
 
     def _set_auth_token(self):
