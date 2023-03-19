@@ -26,7 +26,7 @@ Active   MAC Addr           IP Addr          ETH port  VLAN ID
  """
 
     def _get_lan_hosts(self):
-        child = pexpect.spawn(f"ssh {self.__user}@{self.__host}")
+        child = pexpect.spawn(f"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no {self.__user}@{self.__host}")
         child.expect(f"{self.__user}@{self.__host}'s password: ")
         child.sendline(self.__password)
         child.expect(' fail to read file > ')
